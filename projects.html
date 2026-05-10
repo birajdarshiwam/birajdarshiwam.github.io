@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Projects</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" media="print" onload="this.media='all'" />
+		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" /></noscript>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.project-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5em;
+				margin: 1em 0 1.5em;
+			}
+			.project-tag {
+				background: rgba(155, 241, 255, 0.1);
+				border: 1px solid rgba(155, 241, 255, 0.3);
+				border-radius: 3px;
+				color: #9bf1ff;
+				font-size: 0.75em;
+				letter-spacing: 0.1em;
+				padding: 0.3em 0.7em;
+				text-transform: uppercase;
+			}
+			.project-metrics {
+				display: flex;
+				gap: 1.5em;
+				margin: 0.75em 0 1.25em;
+				flex-wrap: wrap;
+			}
+			.metric {
+				text-align: center;
+			}
+			.metric-value {
+				display: block;
+				font-size: 1.5em;
+				font-weight: 600;
+				color: #9bf1ff;
+				line-height: 1.1;
+			}
+			.metric-label {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 0.1em;
+				opacity: 0.7;
+				text-transform: uppercase;
+				margin-top: 0.2em;
+			}
+			.figure-gallery {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.5em;
+				margin: 2em 0 1em;
+			}
+			.figure-gallery.single {
+				grid-template-columns: 1fr;
+			}
+			.figure-gallery figure {
+				margin: 0;
+			}
+			.figure-gallery img {
+				width: 100%;
+				height: auto;
+				display: block;
+				border-radius: 4px;
+				border: 1px solid rgba(212, 212, 255, 0.1);
+			}
+			.figure-gallery figcaption {
+				font-size: 0.8em;
+				opacity: 0.6;
+				margin-top: 0.5em;
+				text-align: center;
+				font-style: italic;
+			}
+			@media screen and (max-width: 736px) {
+				.figure-gallery {
+					grid-template-columns: 1fr;
+				}
+			}
+			.figures-heading {
+				font-size: 0.8em;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin: 2em 0 0.75em;
+				border-bottom: 1px solid rgba(212,212,255,0.1);
+				padding-bottom: 0.5em;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+
+			<!-- Banner -->
+			<section id="banner" class="major" style="background-image: url('images/office.webp');">
+				<div class="inner">
+					<header class="major">
+						<h1>Projects</h1>
+					</header>
+					<div class="content">
+						<p>Data science and statistical modelling projects<br />
+						from my coursework at IIM Calcutta and ISI Kolkata.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Main -->
+			<div id="main">
+
+				<section id="two" class="spotlights">
+
+					<!-- Project 1: CDS -->
+					<section>
+						<a href="CDS.pdf" target="_blank" class="image">
+							<img src="images/cds_p2_img1.png" alt="Correlation heatmap of phonetic features" data-position="center center" loading="lazy" />
+						</a>
+						<div class="content">
+							<div class="inner">
+								<header class="major">
+									<h3>Music: Phonetic Factors &amp; Popularity</h3>
+								</header>
+								<p>
+									Can you predict whether a song will be a hit, based solely on its audio fingerprint? This project builds an XGBoost classifier on the Spotify 114k dataset to answer that. Using 13 phonetic features (danceability, valence, energy, loudness, etc.), the model learns to distinguish popular from non-popular tracks without ever hearing them.
+								</p>
+								<p>
+									Stratified 10-fold cross-validation and Ridge regularisation controlled overfitting, while 200-iteration RandomizedSearchCV tuned the hyperparameters. Correlation analysis (above) guided feature selection, revealing strong multicollinearity between energy-loudness and acousticness-energy that made regularisation essential.
+								</p>
+								<div class="project-metrics">
+									<div class="metric">
+										<span class="metric-value">0.787</span>
+										<span class="metric-label">ROC-AUC</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">0.802</span>
+										<span class="metric-label">PR-AUC</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">0.79</span>
+										<span class="metric-label">Recall (popular)</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">114k</span>
+										<span class="metric-label">Tracks</span>
+									</div>
+								</div>
+								<div class="project-tags">
+									<span class="project-tag">XGBoost</span>
+									<span class="project-tag">Python</span>
+									<span class="project-tag">scikit-learn</span>
+									<span class="project-tag">Spotify API</span>
+									<span class="project-tag">Classification</span>
+									<span class="project-tag">SHAP</span>
+								</div>
+
+								<p class="figures-heading">Figures from the report</p>
+								<div class="figure-gallery">
+									<figure>
+										<img src="images/cds_p4_img0.png" alt="SHAP feature importance and direction" loading="lazy" />
+										<figcaption>SHAP values: feature importance and direction of influence on popularity</figcaption>
+									</figure>
+									<figure>
+										<img src="images/cds_p2_img0.png" alt="Distribution of phonetic features" loading="lazy" />
+										<figcaption>Distribution of all 13 phonetic features in the Spotify dataset</figcaption>
+									</figure>
+								</div>
+
+								<ul class="actions" style="margin-top:1.5em">
+									<li><a href="CDS.pdf" target="_blank" class="button">View Full Report</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<!-- Project 2: SPA -->
+					<section>
+						<a href="SPA.pdf" target="_blank" class="image">
+							<img src="images/spa_p3_img0.png" alt="NYC arrest counts 2012-2018" data-position="center center" loading="lazy" />
+						</a>
+						<div class="content">
+							<div class="inner">
+								<header class="major">
+									<h3>Forecasting Criminal Arrests</h3>
+								</header>
+								<p>
+									A time series study of daily criminal arrests in New York City (2012-2017), treating arrest counts as a stochastic process with strong weekly seasonality (visible in the raw data above, with crash events marked in red). Four SARIMAX variants were compared: with and without log-transformation, and with and without exogenous holiday and disruption indicators.
+								</p>
+								<p>
+									The original-scale model with exogenous variables (OG-EXO) was selected as the final model. Lower residual autocorrelation confirmed it captured the underlying structure more faithfully than the log-transformed variant, even at slightly higher numerical error. The work shows that external disruptions (holidays, strikes) systematically suppress arrest activity and must be accounted for in urban planning models.
+								</p>
+								<div class="project-metrics">
+									<div class="metric">
+										<span class="metric-value">0.655</span>
+										<span class="metric-label">R²</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">0.10</span>
+										<span class="metric-label">MAE (log model)</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">2,192</span>
+										<span class="metric-label">Daily datapoints</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">4</span>
+										<span class="metric-label">Models compared</span>
+									</div>
+								</div>
+								<div class="project-tags">
+									<span class="project-tag">SARIMAX</span>
+									<span class="project-tag">Python</span>
+									<span class="project-tag">pmdarima</span>
+									<span class="project-tag">Time Series</span>
+									<span class="project-tag">NYPD Open Data</span>
+									<span class="project-tag">Stochastic Processes</span>
+								</div>
+
+								<p class="figures-heading">Figures from the report</p>
+								<div class="figure-gallery">
+									<figure>
+										<img src="images/spa_p6_img0.png" alt="Test validation and 3-day forecast" loading="lazy" />
+										<figcaption>OG-EXO model: test set validation and 3-day future forecast</figcaption>
+									</figure>
+									<figure>
+										<img src="images/spa_p5_img0.png" alt="Residual diagnostics" loading="lazy" />
+										<figcaption>Residual diagnostics: standardised residuals, histogram, Q-Q plot, correlogram</figcaption>
+									</figure>
+								</div>
+
+								<ul class="actions" style="margin-top:1.5em">
+									<li><a href="SPA.pdf" target="_blank" class="button">View Full Report</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+				</section>
+
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/birajdarshiwam/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/birajdarshiwam" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/shiwam-birajdar-278053170/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:shiwambba2027@email.iimcal.ac.in" class="icon brands alt fa-google"><span class="label">Gmail</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; birajdarshiwam</li><li>Design: HTML5 UP</li>
+					</ul>
+				</div>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js" defer></script>
+		<script src="assets/js/jquery.scrolly.min.js" defer></script>
+		<script src="assets/js/jquery.scrollex.min.js" defer></script>
+		<script src="assets/js/browser.min.js" defer></script>
+		<script src="assets/js/breakpoints.min.js" defer></script>
+		<script src="assets/js/util.js" defer></script>
+		<script src="assets/js/main.js" defer></script>
+
+	</body>
+</html>
