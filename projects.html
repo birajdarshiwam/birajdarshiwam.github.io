@@ -116,63 +116,63 @@
 
 				<section id="two" class="spotlights">
 
-					<!-- Project 1: CDS -->
+					<!-- Project 1: Happiness -->
 					<section>
-						<a href="CDS.pdf" target="_blank" class="image">
-							<img src="images/cds_p2_img1.png" alt="Correlation heatmap of phonetic features" data-position="center center" loading="lazy" />
+						<a href="Happiness.pdf" target="_blank" class="image">
+							<img src="images/hap_scatter.png" alt="Happiness vs log GDP per capita scatter with OLS and LOWESS fits" data-position="center center" loading="lazy" />
 						</a>
 						<div class="content">
 							<div class="inner">
 								<header class="major">
-									<h3>Music: Phonetic Factors &amp; Popularity</h3>
+									<h3>Does Money Buy Happiness?</h3>
 								</header>
 								<p>
-									Can you predict whether a song will be a hit, based solely on its audio fingerprint? This project builds an XGBoost classifier on the Spotify 114k dataset to answer that. Using 13 phonetic features (danceability, valence, energy, loudness, etc.), the model learns to distinguish popular from non-popular tracks without ever hearing them.
+									A cross-country econometric enquiry into whether national income causally raises happiness. World Happiness Report scores for 131 countries were regressed on log GDP per capita alongside four World Bank controls (life expectancy, Gini, unemployment, inflation), then stress-tested with a full diagnostic battery: VIF for multicollinearity, Breusch-Pagan and White tests for heteroscedasticity, RESET for functional form, Jarque-Bera and influence diagnostics on the residuals.
 								</p>
 								<p>
-									Stratified 10-fold cross-validation and Ridge regularisation controlled overfitting, while 200-iteration RandomizedSearchCV tuned the hyperparameters. Correlation analysis (above) guided feature selection, revealing strong multicollinearity between energy-loudness and acousticness-energy that made regularisation essential.
+									Because GDP and happiness plausibly cause each other, the OLS estimate is suspect. Using distance from the equator as an instrument for income, 2SLS more than doubled the coefficient (0.614 &rarr; 1.287), and a Wu-Hausman test (p = 0.007) confirmed endogeneity — evidence that the naive regression <em>understates</em> the causal effect of income on happiness.
 								</p>
 								<div class="project-metrics">
 									<div class="metric">
-										<span class="metric-value">0.787</span>
-										<span class="metric-label">ROC-AUC</span>
+										<span class="metric-value">0.705</span>
+										<span class="metric-label">R²</span>
 									</div>
 									<div class="metric">
-										<span class="metric-value">0.802</span>
-										<span class="metric-label">PR-AUC</span>
+										<span class="metric-value">131</span>
+										<span class="metric-label">Countries</span>
 									</div>
 									<div class="metric">
-										<span class="metric-value">0.79</span>
-										<span class="metric-label">Recall (popular)</span>
+										<span class="metric-value">1.287</span>
+										<span class="metric-label">2SLS coef (log GDP)</span>
 									</div>
 									<div class="metric">
-										<span class="metric-value">114k</span>
-										<span class="metric-label">Tracks</span>
+										<span class="metric-value">18.0</span>
+										<span class="metric-label">First-stage F</span>
 									</div>
 								</div>
 								<div class="project-tags">
-									<span class="project-tag">XGBoost</span>
+									<span class="project-tag">OLS</span>
+									<span class="project-tag">IV / 2SLS</span>
 									<span class="project-tag">Python</span>
-									<span class="project-tag">scikit-learn</span>
-									<span class="project-tag">Spotify API</span>
-									<span class="project-tag">Classification</span>
-									<span class="project-tag">SHAP</span>
+									<span class="project-tag">statsmodels</span>
+									<span class="project-tag">World Bank Data</span>
+									<span class="project-tag">Econometrics</span>
 								</div>
 
-								<p class="figures-heading">Figures from the report</p>
+								<p class="figures-heading">Figures from the analysis</p>
 								<div class="figure-gallery">
 									<figure>
-										<img src="images/cds_p4_img0.png" alt="SHAP feature importance and direction" loading="lazy" />
-										<figcaption>SHAP values: feature importance and direction of influence on popularity</figcaption>
+										<img src="images/hap_corr.png" alt="Correlation matrix of regressors" loading="lazy" />
+										<figcaption>Correlation matrix of regressors: GDP and life expectancy at 0.88 flagged multicollinearity</figcaption>
 									</figure>
 									<figure>
-										<img src="images/cds_p2_img0.png" alt="Distribution of phonetic features" loading="lazy" />
-										<figcaption>Distribution of all 13 phonetic features in the Spotify dataset</figcaption>
+										<img src="images/hap_resid.png" alt="Residual diagnostics panel" loading="lazy" />
+										<figcaption>Residual diagnostics: fitted vs residuals, Q-Q plot, histogram, scale-location</figcaption>
 									</figure>
 								</div>
 
 								<ul class="actions" style="margin-top:1.5em">
-									<li><a href="CDS.pdf" target="_blank" class="button">View Full Report</a></li>
+									<li><a href="Happiness.pdf" target="_blank" class="button">View Presentation</a></li>
 								</ul>
 							</div>
 						</div>
@@ -235,6 +235,193 @@
 
 								<ul class="actions" style="margin-top:1.5em">
 									<li><a href="SPA.pdf" target="_blank" class="button">View Full Report</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<!-- Project 3: IPL -->
+					<section>
+						<a href="IPL.pdf" target="_blank" class="image">
+							<img src="images/ipl_hetero.png" alt="Per-player vs pooled regression fits showing heterogeneity" data-position="center center" loading="lazy" />
+						</a>
+						<div class="content">
+							<div class="inner">
+								<header class="major">
+									<h3>What Drives an IPL Batter's Season?</h3>
+								</header>
+								<p>
+									A panel-data study of IPL batting built from Cricsheet ball-by-ball data: 410 players tracked across 19 seasons, giving 1,676 player-seasons. The estimator ladder ran Pooled OLS &rarr; Fixed Effects &rarr; Random Effects, with a Hausman test decisively favouring FE — each batter's unobserved talent matters (visible above, where per-player fits diverge from the pooled line).
+								</p>
+								<p>
+									The naive model (runs on balls faced) posted a 0.93 within-R² — an arithmetic artefact, not insight. Re-specifying the outcome as strike rate, lagging opportunity regressors against reverse causality, and adding match-context controls collapsed it to an honest ~0.16. What survived every specification, including Arellano-Bond dynamic GMM: death-over exposure and run-friendly venues lift strike rates, and an inverted-U aging curve puts peak batting age at ~25.6 years.
+								</p>
+								<div class="project-metrics">
+									<div class="metric">
+										<span class="metric-value">410</span>
+										<span class="metric-label">Players</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">19</span>
+										<span class="metric-label">Seasons</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">1,676</span>
+										<span class="metric-label">Player-seasons</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">25.6</span>
+										<span class="metric-label">Peak batting age</span>
+									</div>
+								</div>
+								<div class="project-tags">
+									<span class="project-tag">Panel Data</span>
+									<span class="project-tag">Fixed Effects</span>
+									<span class="project-tag">Hausman Test</span>
+									<span class="project-tag">Arellano-Bond GMM</span>
+									<span class="project-tag">Python</span>
+									<span class="project-tag">Cricsheet</span>
+								</div>
+
+								<p class="figures-heading">Figures from the analysis</p>
+								<div class="figure-gallery">
+									<figure>
+										<img src="images/ipl_aging.png" alt="Estimated IPL batting aging curve" loading="lazy" />
+										<figcaption>The aging curve: strike-rate effect peaks at age 25.6, then declines steeply</figcaption>
+									</figure>
+									<figure>
+										<img src="images/ipl_corr.png" alt="Correlation matrix of strike-rate model variables" loading="lazy" />
+										<figcaption>Correlation matrix of the strike-rate model variables after de-naiving the specification</figcaption>
+									</figure>
+								</div>
+
+								<ul class="actions" style="margin-top:1.5em">
+									<li><a href="IPL.pdf" target="_blank" class="button">View Presentation</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<!-- Project 4: CDS -->
+					<section>
+						<a href="CDS.pdf" target="_blank" class="image">
+							<img src="images/cds_p2_img1.png" alt="Correlation heatmap of phonetic features" data-position="center center" loading="lazy" />
+						</a>
+						<div class="content">
+							<div class="inner">
+								<header class="major">
+									<h3>Music: Phonetic Factors &amp; Popularity</h3>
+								</header>
+								<p>
+									Can you predict whether a song will be a hit, based solely on its audio fingerprint? This project builds an XGBoost classifier on the Spotify 114k dataset to answer that. Using 13 phonetic features (danceability, valence, energy, loudness, etc.), the model learns to distinguish popular from non-popular tracks without ever hearing them.
+								</p>
+								<p>
+									Stratified 10-fold cross-validation and Ridge regularisation controlled overfitting, while 200-iteration RandomizedSearchCV tuned the hyperparameters. Correlation analysis (above) guided feature selection, revealing strong multicollinearity between energy-loudness and acousticness-energy that made regularisation essential.
+								</p>
+								<div class="project-metrics">
+									<div class="metric">
+										<span class="metric-value">0.787</span>
+										<span class="metric-label">ROC-AUC</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">0.802</span>
+										<span class="metric-label">PR-AUC</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">0.79</span>
+										<span class="metric-label">Recall (popular)</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">114k</span>
+										<span class="metric-label">Tracks</span>
+									</div>
+								</div>
+								<div class="project-tags">
+									<span class="project-tag">XGBoost</span>
+									<span class="project-tag">Python</span>
+									<span class="project-tag">scikit-learn</span>
+									<span class="project-tag">Spotify API</span>
+									<span class="project-tag">Classification</span>
+									<span class="project-tag">SHAP</span>
+								</div>
+
+								<p class="figures-heading">Figures from the report</p>
+								<div class="figure-gallery">
+									<figure>
+										<img src="images/cds_p4_img0.png" alt="SHAP feature importance and direction" loading="lazy" />
+										<figcaption>SHAP values: feature importance and direction of influence on popularity</figcaption>
+									</figure>
+									<figure>
+										<img src="images/cds_p2_img0.png" alt="Distribution of phonetic features" loading="lazy" />
+										<figcaption>Distribution of all 13 phonetic features in the Spotify dataset</figcaption>
+									</figure>
+								</div>
+
+								<ul class="actions" style="margin-top:1.5em">
+									<li><a href="CDS.pdf" target="_blank" class="button">View Full Report</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<!-- Project 5: FRM -->
+					<section>
+						<a href="FRM-report.pdf" target="_blank" class="image">
+							<img src="images/frm_beta.png" alt="Sector return response to structural oil shocks" data-position="center center" loading="lazy" />
+						</a>
+						<div class="content">
+							<div class="inner">
+								<header class="major">
+									<h3>Mapping Oil-Price Risk in Indian Equities</h3>
+								</header>
+								<p>
+									A single number for "the oil price" hides three different economic events: a supply disruption, a global demand swing, and oil-specific speculation. This study separates them with a Kilian structural VAR (1993-2026), maps how each shock propagates into ten Indian equity and safe-haven sleeves via Jord&agrave; local projections (the exposure map above), and converts that map into a monthly Black-Litterman portfolio overlay with a conditional gold and liquid-bond hedge.
+								</p>
+								<p>
+									Out of sample, the overlay lifts the net Sharpe ratio from 1.27 to 1.85 and cuts the portfolio's oil-variance share roughly in half — at one-seventeenth the turnover of a linear control. Every headline claim faces a robustness battery of walk-forward folds, placebos, and bootstraps, and the report states plainly what the evidence does not support: the value of <em>timing</em> the hedge cannot be separated from a constant defensive tilt at this sample size.
+								</p>
+								<div class="project-metrics">
+									<div class="metric">
+										<span class="metric-value">1.85</span>
+										<span class="metric-label">Net Sharpe (OOS)</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">&minus;48%</span>
+										<span class="metric-label">Oil-variance share</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">16.2%</span>
+										<span class="metric-label">Annual net return</span>
+									</div>
+									<div class="metric">
+										<span class="metric-value">+0.68</span>
+										<span class="metric-label">Corr (gold, oil shock)</span>
+									</div>
+								</div>
+								<div class="project-tags">
+									<span class="project-tag">Structural VAR</span>
+									<span class="project-tag">Local Projections</span>
+									<span class="project-tag">Black-Litterman</span>
+									<span class="project-tag">Risk Management</span>
+									<span class="project-tag">Python</span>
+									<span class="project-tag">Bootstrap Inference</span>
+								</div>
+
+								<p class="figures-heading">Figures from the report</p>
+								<div class="figure-gallery">
+									<figure>
+										<img src="images/frm_perf.png" alt="Net cumulative growth and rolling volatility of the three portfolios" loading="lazy" />
+										<figcaption>Net growth of one rupee and rolling volatility: the BL overlay compresses risk in the 2020 and 2022 oil episodes</figcaption>
+									</figure>
+									<figure>
+										<img src="images/frm_gold.png" alt="Gold allocation tracking oil-shock intensity" loading="lazy" />
+										<figcaption>The hedge is genuinely conditional: gold weight tracks oil-shock intensity with correlation +0.68</figcaption>
+									</figure>
+								</div>
+
+								<ul class="actions" style="margin-top:1.5em">
+									<li><a href="FRM-report.pdf" target="_blank" class="button">View Full Report</a></li>
+									<li><a href="FRM.pdf" target="_blank" class="button">View Presentation</a></li>
 								</ul>
 							</div>
 						</div>

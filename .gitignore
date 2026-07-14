@@ -1,0 +1,15 @@
+# Temporary local project folders (source material, not part of the site)
+EMABE-2/
+EMABE-Presentation/
+
+# Local tooling
+.claude/
+
+# macOS
+.DS_Store
+
+# Env / secrets (never commit)
+.env
+.env.*
+*.pem
+*.key
